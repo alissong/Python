@@ -1,8 +1,10 @@
 import psutil
 
 #Variaveis
-memototal = psutil.virtual_memory().total #Insere total de memória
-memoswap = psutil.swap_memory().total     #Insere total de memória swap
+dps = psutil.disk_partitions(all=True)           #Retorna info dos discos
+fmt_str = "{:<8}"                                #Formata string
+livre = psutil.disk_usage(path='c:').free        #Retorna espaco disponivel
+espacototal = psutil.disk_usage(path='c:').total #Retorna espaco total
 
 '''
 Ajuda do stack overflow
@@ -33,7 +35,10 @@ Fim ajuda do stack overflow
 '''
 
 
-#Print das informações de memória e memória swap
-print("Memória total:", byteformat(memototal), "\nTotal memória swap:", byteformat(memoswap))
-
-
+for i in (0,):
+    dp = dps [i]
+    print("Drive:",fmt_str.format(dp.device),
+          "\nSistema de arquivo:", dp.fstype,
+          "\nArmazenamento total:", byteformat(espacototal),
+          "\nArmazenamento disponivel:", byteformat(livre)
+          )

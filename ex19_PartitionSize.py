@@ -1,8 +1,6 @@
 import psutil
 
-#Variaveis
-memototal = psutil.virtual_memory().total #Insere total de memória
-memoswap = psutil.swap_memory().total     #Insere total de memória swap
+espacolivre = psutil.disk_usage(path='c:').free
 
 '''
 Ajuda do stack overflow
@@ -32,8 +30,4 @@ def byteformat(B):
 Fim ajuda do stack overflow
 '''
 
-
-#Print das informações de memória e memória swap
-print("Memória total:", byteformat(memototal), "\nTotal memória swap:", byteformat(memoswap))
-
-
+print("Total livre na partição:", byteformat(espacolivre))
